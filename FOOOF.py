@@ -34,13 +34,48 @@ def generate_data_reports(file_paths, input_dir, hdf5_dir, report_dir, results_d
 
 if __name__ == '__main__':
     # Creating description and arguments for script use on the command line
-    parser = argparse.ArgumentParser(description='Give # sentences added, % words replaced')
-    parser.add_argument('--s', '--sentence',
-                        dest='s_add',
+    parser = argparse.ArgumentParser(description='Give sample rate, frequency range, '
+                                                 'input and output file names/paths')
+    parser.add_argument('--sr', '--sample_rate',
+                        dest='s_rate',
                         type=int,
-                        help='# sentences added',
-                        required=False,
-                        default=2)
+                        help='sample rate of recording',
+                        required=True)
+    parser.add_argument('--fr', '--frequency_range',
+                        dest='f_range',
+                        type=int,
+                        help='frequency range for analysis',
+                        required=True)
+    parser.add_argument('--file_path', '--recording',
+                        dest='file',
+                        type=str,
+                        help='file name or path of recording',
+                        required=True)
+    parser.add_argument('--in_dir', '--input_directory',
+                        dest='in_dir',
+                        type=str,
+                        help='directory or folder with recording file',
+                        required=True)
+    parser.add_argument('--hdf5_dir', '--hdf5_directory',
+                        dest='hdf5_dir',
+                        type=str,
+                        help='directory or folder to hold hdf5 files',
+                        required=True)
+    parser.add_argument('--report_dir', '--report_directory',
+                        dest='report_dir',
+                        type=str,
+                        help='directory or folder to hold PDFs of FOOOF reports',
+                        required=True)
+    parser.add_argument('--results_dir', '--results_directory',
+                        dest='results_dir',
+                        type=str,
+                        help='directory or folder to hold results from FOOOF report',
+                        required=True)
+    parser.add_argument('--results_file', '--results_file_name',
+                        dest='results_file',
+                        type=str,
+                        help='file name for holding FOOOF results',
+                        required=True)
     # parsing arguments
     args = parser.parse_args()
     generate_data_reports()
