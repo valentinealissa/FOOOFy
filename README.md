@@ -5,6 +5,11 @@
 > 
 ## Implementation
 ### Modules required:
+* `h5py`: https://docs.h5py.org/en/latest/build.html
+* `neuroDSP`: https://neurodsp-tools.github.io/neurodsp/
+* `scipy`: https://docs.scipy.org/doc/scipy/getting_started.html
+* `FOOOF`: https://fooof-tools.github.io/fooof/index.html
+### Files required:
 >These files should be run in the numerical order seen below
 >1. `file_agg.m`: aggregates file metadata (electrode depth, recording duration, file path) into .mat and .csv 
 >2. `file_qc.m`: quality controls .mat file for electrode depth and recording duration. creates new .mat and .csv file
@@ -23,11 +28,11 @@
 > ```angular2html
 > python ./FOOOF.py \
 > --sr = 48000 \
-> --fr = (2, 50) \
-> --in_file = 'qc_depth_duration.csv' \
-> --in_dir = '/Users/alissavalentine/ephys_rotation' \
-> --hdf5_dir = '/Users/alissavalentine/ephys_rotation/hdf5' \
-> --report_dir = '/Users/alissavalentine/ephys_rotation/hdf5/reports/' \
-> --results_dir = '/Users/alissavalentine/ephys_rotation/' \
-> --results_file = 'test.txt'
+> --fr = 2 50 \
+> --in_file = qc_depth_duration_mini.csv \
+> --in_dir = /Users/alissavalentine/ephys_rotation \
+> --hdf5_dir = /Users/alissavalentine/ephys_rotation/hdf5 \
+> --report_dir = /Users/alissavalentine/ephys_rotation/hdf5/reports/ \
+> --results_dir = /Users/alissavalentine/ephys_rotation/ \
+> --results_file = results_mini.txt
 >```

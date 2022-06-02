@@ -42,8 +42,8 @@ if __name__ == '__main__':
                         help='sample rate of recording',
                         required=True)
     parser.add_argument('--fr', '--frequency_range',
-                        dest='f_range',
-                        type=tuple,
+                        dest='f_range', nargs='+',
+                        type=int,
                         help='frequency range for analysis',
                         required=True)
     parser.add_argument('--in_file', '--recording',
@@ -78,5 +78,5 @@ if __name__ == '__main__':
                         required=True)
     # parsing arguments
     args = parser.parse_args()
-    generate_data_reports(args.s_rate, args.f_range, args.file, args.in_dir,
+    generate_data_reports(args.s_rate, tuple(args.f_range), args.file, args.in_dir,
                           args.hdf5_dir, args.report_dir, args.results_dir, args.results_file)
