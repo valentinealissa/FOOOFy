@@ -19,13 +19,13 @@ from create_FOOOF_reports import create_reports
 from create_hdf5 import create_hdf5
 
 
-def generate_data_reports(file_paths, input_dir, hdf5_dir, report_dir, results_dir,
-                          results_file_name, sample_rate, frequency_range):
+def generate_data_reports(sample_rate, frequency_range, metadata_file, input_dir, hdf5_dir,
+                          report_dir, results_dir, results_file_name):
     """
     :return: new directory with hdf5 files, new directory with PDF FOOOF reports, FOOOF results file
     """
     # returns list of hdf5 file paths for input into FOOOF modeling and generates hdf5 files
-    paths = create_hdf5(file_paths, input_dir, hdf5_dir)
+    paths = create_hdf5(metadata_file, input_dir, hdf5_dir)
     # saving reports as PDFs
     create_reports(paths, sample_rate, frequency_range, report_dir)
     # saving results from FOOOF to text file
@@ -43,10 +43,10 @@ if __name__ == '__main__':
                         required=True)
     parser.add_argument('--fr', '--frequency_range',
                         dest='f_range',
-                        type=int,
+                        type=tuple,
                         help='frequency range for analysis',
                         required=True)
-    parser.add_argument('--file_path', '--recording',
+    parser.add_argument('--in_file', '--recording',
                         dest='file',
                         type=str,
                         help='file name or path of recording',
@@ -78,4 +78,5 @@ if __name__ == '__main__':
                         required=True)
     # parsing arguments
     args = parser.parse_args()
-    generate_data_reports()
+    generate_data_reports(args.s_rate, args.f_range, args.file, args.in_dir,
+                          args.hdf5_dir, args.report_dir, args.results_dir, args.results_file)
