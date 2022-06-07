@@ -82,10 +82,10 @@ def save_results(file_paths, sample_rate, frequency_range, output_directory, out
             # saving recording name
             recording_name = file.rsplit("/")[-1].rstrip('.hdf5')
             # saving all extracted values into a row
-            new_data = str(recording_name + "," + str(theta_CF) + "," + str(theta_PW) + "," + str(theta_BW) + "," + str(
-                alpha_CF) + "," + str(alpha_PW) + "," + str(alpha_BW) + "," + str(beta_CF) + "," + str(
-                beta_PW) + "," + str(beta_BW) + "," + str(low_gamma_CF) + "," + str(low_gamma_PW) + "," + str(
-                low_gamma_BW) + "," + str(r_squared) + "," + str(error) + "," + str(exponent) + "," + str(offset))
+            new_data = [str(recording_name), str(theta_CF), str(theta_PW), str(theta_BW), str(alpha_CF), str(alpha_PW),
+                        str(alpha_BW), str(beta_CF), str(beta_PW), str(beta_BW), str(low_gamma_CF), str(low_gamma_PW),
+                        str(low_gamma_BW), str(r_squared), str(error), str(exponent), str(offset)]
+            new_data = ",".join(new_data)
             # adding values to the final values list
             final_values.append(new_data)
 
